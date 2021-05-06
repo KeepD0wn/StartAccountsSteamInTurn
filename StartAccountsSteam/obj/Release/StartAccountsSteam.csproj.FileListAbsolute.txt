@@ -1,0 +1,2 @@
+C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\obj\Release\StartAccountsSteam.csprojAssemblyReference.cache
+C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\obj\Release\StartAccountsSteam.csproj.CoreCompileInputs.cache

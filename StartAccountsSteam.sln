@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartAccountsSteam", "StartAccountsSteam\StartAccountsSteam.csproj", "{B2B9AD5E-9932-49CD-85C4-D77F5895A907}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamAuth", "..\ConsoleApp1\SteamAuth-master\SteamAuth\SteamAuth.csproj", "{5AD0934E-F6C4-4AE5-83AF-C788313B2A87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2B9AD5E-9932-49CD-85C4-D77F5895A907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B9AD5E-9932-49CD-85C4-D77F5895A907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B9AD5E-9932-49CD-85C4-D77F5895A907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B9AD5E-9932-49CD-85C4-D77F5895A907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AD0934E-F6C4-4AE5-83AF-C788313B2A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AD0934E-F6C4-4AE5-83AF-C788313B2A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AD0934E-F6C4-4AE5-83AF-C788313B2A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AD0934E-F6C4-4AE5-83AF-C788313B2A87}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F081CC3-8F84-4F31-B75A-220CFD6E025C}
+	EndGlobalSection
+EndGlobal
