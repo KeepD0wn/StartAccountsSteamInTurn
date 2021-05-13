@@ -337,6 +337,7 @@ namespace StartAccountsSteam
 
                 while (true)
                 {
+                   //таймер меняет переменную, тут делаем иф, если проходит внутрь, то аборт
                     steamWindow = FindWindow(null, "Steam");
                     if (steamWindow.ToString() != "0")
                     {
