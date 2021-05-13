@@ -34,11 +34,36 @@ namespace StartAccountsSteam
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
 
+        [DllImport("User32.dll")]
+        static extern IntPtr GetDC(IntPtr hwnd);
+
+        [DllImport("gdi32.dll")]
+        static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
         const int VK_ENTER = 0x0D;
 
         const int WM_KEYDOWN = 0x100;
 
         const int wmChar = 0x0102;
+
+        const int DESKTOPVERTRES = 117;
+
+        const int DESKTOPHORZRES = 118;
+
+        const uint SWP_NOZORDER = 0x0004;
+
+        private static int consoleX = 380;
+
+        private static int consoleY = 270;
+
+        private static IntPtr primary = GetDC(IntPtr.Zero);
+
+        private static int monitorSizeX = GetDeviceCaps(primary, DESKTOPHORZRES);
+
+        private static int monitorSizeY = GetDeviceCaps(primary, DESKTOPVERTRES);
 
         private static int procCount = 0;
 
@@ -85,6 +110,7 @@ namespace StartAccountsSteam
         private static void TypeText(IntPtr console, IntPtr steamGuardWindow, string str)
         {
             langToEn();
+            Thread.Sleep(100); //когда проц загружен нужен делей
             SetForegroundWindow(console);
             Thread.Sleep(100);
             SetForegroundWindow(steamGuardWindow);
@@ -164,9 +190,9 @@ namespace StartAccountsSteam
                 Thread.Sleep(1000);
                 throw new Exception("Abort");
             }
-        }
+        }       
 
-        private static void StartCsGo()
+        private static void StartCsGo(int currentCycle, int lastCycle)
         {
             try
             {
@@ -233,11 +259,11 @@ namespace StartAccountsSteam
 
                 });
 
-                process.StartInfo = processStartInfo;
-                process.Start();
-
                 IntPtr steamWindow = new IntPtr();
                 IntPtr steamGuardWindow = new IntPtr();
+
+                process.StartInfo = processStartInfo;
+                process.Start();
 
                 while (true)
                 {
@@ -307,7 +333,7 @@ namespace StartAccountsSteam
                     throw new Exception("Abort");
                 }
 
-                CheckGuardClosed(steamGuardWindow, steamProc, console, codeGuardTask.Result);
+                CheckGuardClosed(steamGuardWindow, steamProc, console, codeGuardTask.Result); // мб разделить проверку на стим гвард клозед и на стим варнинг, варнинг сделать таском и на секунд 15
 
                 while (true)
                 {
@@ -316,7 +342,7 @@ namespace StartAccountsSteam
                     {
                         Thread.Sleep(500);
                         Console.WriteLine("[SYSTEM] Steam detected");
-                        Console.WriteLine(new string('-', 25));
+                        Console.WriteLine(new string('-', 20) + $"Current window: {currentCycle}/{lastCycle}");
                         steamProc.Kill();
                         Thread.Sleep(500);
                         break;
@@ -325,14 +351,14 @@ namespace StartAccountsSteam
                 }
 
                 try
-                {
-                    procCount += 1;
+                {                    
                     conn.Open();
                     var com = new MySqlCommand("USE csgo; " +
                     "Update accounts set folderCreated = @folderCreated where id = @id", conn);
                     com.Parameters.AddWithValue("@folderCreated", 1);
                     com.Parameters.AddWithValue("@id", accid);
-                    int rowCount = com.ExecuteNonQuery();                    
+                    int rowCount = com.ExecuteNonQuery();
+                    procCount += 1;
                 }
                 catch (Exception ex)
                 {
@@ -357,6 +383,13 @@ namespace StartAccountsSteam
 
         static void Main(string[] args)
         {
+            
+            Console.Title = "Create CSGO Folders";
+            Thread.Sleep(100);
+            IntPtr conWindow = FindWindow(null, "Create CSGO Folders");            
+            SetWindowPos(conWindow, IntPtr.Zero, monitorSizeX - consoleX, monitorSizeY - consoleY - 40, consoleX, consoleY, SWP_NOZORDER); //вылазит за экран если размер элементов больше 100%	
+            SetForegroundWindow(conWindow);
+
             try
             {
                 if (File.Exists($@"{AppDomain.CurrentDomain.BaseDirectory}\License.lic"))
@@ -374,8 +407,8 @@ namespace StartAccountsSteam
                         int count = Convert.ToInt32(Console.ReadLine());
 
                         while (procCount < count)
-                        {                            
-                            Thread myThread = new Thread(new ThreadStart(StartCsGo));
+                        {
+                            Thread myThread = new Thread(delegate () { StartCsGo(procCount+1, count); });
                             myThread.Start();
                             myThread.Join();
                         }
