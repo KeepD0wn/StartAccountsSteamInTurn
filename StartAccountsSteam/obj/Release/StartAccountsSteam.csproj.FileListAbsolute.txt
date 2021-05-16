@@ -33,3 +33,5 @@ C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\bin\Release\Sy
 C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\obj\Release\StartAccountsSteam.csproj.CopyComplete
 C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\obj\Release\StartAccountsSteam.exe
 C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\obj\Release\StartAccountsSteam.pdb
+C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\obj\Release\StartAccountsSteam.Properties.Resources.resources
+C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\obj\Release\StartAccountsSteam.csproj.GenerateResource.cache

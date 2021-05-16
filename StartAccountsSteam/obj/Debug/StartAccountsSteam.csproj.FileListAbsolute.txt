@@ -33,3 +33,5 @@ C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\bin\Debug\Zsta
 C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\bin\Debug\Newtonsoft.Json.dll
 C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\bin\Debug\SteamAuth.pdb
 C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\bin\Debug\Google.Protobuf.pdb
+C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\obj\Debug\StartAccountsSteam.Properties.Resources.resources
+C:\Users\gvozd\source\repos\StartAccountsSteam\StartAccountsSteam\obj\Debug\StartAccountsSteam.csproj.GenerateResource.cache
